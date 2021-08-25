@@ -1,3 +1,4 @@
+import { CourseService } from './course/course.service';
 import { Component } from '@angular/core';
 //html markup- template
 @Component({
@@ -13,5 +14,13 @@ import { Component } from '@angular/core';
 })
 export class CourseComponent {
   title = 'List of Courses';
-  courses = ['course1', 'course2', 'course3'];
+  courses;
+
+  //dependency injection --add dependency  class in the constructor
+  //then after we put parameter in constructor we want to register module in app.module.ts
+  constructor(service:CourseService){
+      //this new keyword is thightly coupled so we put inside of constructor as parameter like above
+     // let service=new CourseService();
+      this.courses=service.getCourses();
+  }
 }
